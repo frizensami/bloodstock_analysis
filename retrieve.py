@@ -8,7 +8,7 @@ DATA_FILENAME = "blood-stocks.json"
 OUTPUT_FOLDER = "data"
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-# Re
+
 def main(access_token: str):
     g = Github(access_token)
     repo = g.get_repo("datascapesg/red-cross-blood-stocks")
@@ -39,7 +39,7 @@ def main(access_token: str):
                         encoding="utf-8",
                     ) as f:
                         json.dump(data, f, ensure_ascii=False, indent=4)
-                # The file can't be present twice in the same commit, so we can move onto hte next commit
+                # The file can't be present twice in the same commit, so we can move onto the next commit
                 break
 
     pass
