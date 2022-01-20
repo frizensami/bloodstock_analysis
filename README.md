@@ -1,6 +1,6 @@
 # Blood Stock Analysis
 
-This repository accompanies the analysis of Singapore's blood stock levels at [](https://sriramsami.com/bloodstocks).
+This repository accompanies the analysis of Singapore's blood stock levels at https://sriramsami.com/bloodstocks.
 
 ## Pre-requisites
 
