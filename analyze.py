@@ -8,6 +8,7 @@ from typing import List, Set, Dict, Tuple, Optional, Any
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 def filename_to_datetime(filename: str):
@@ -61,15 +62,47 @@ def plot_dataframe(df):
     dfm_neg = df_negative.melt("Time", var_name="Blood Type", value_name="Stock Level")
     sns.set_palette("bright")
     sns.set_theme()
+    # sns.set_style("white")
+    sns.set_context("notebook", font_scale=1.5, rc={"lines.linewidth": 2.5})
     fig, axes = plt.subplots(2, 1, sharey=True)
-    axes[0].set_title("Positive Blood Groups")
+    axes[0].set_title(r"$\bf{" + "Positive" + "}$" + " Blood Groups")
     axes[0].set_ylabel("Stock Level (%)")
-    axes[1].set_title("Negative Blood Groups")
+    axes[0].set_xlabel("")
+    axes[0].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+    # axes[0].xaxis.set_major_locator(mdates.WeekdayLocator(interval=4))
+    axes[0].xaxis.set_major_locator(mdates.MonthLocator())
+    axes[0].xaxis.set_minor_locator(mdates.WeekdayLocator())
+    # axes[0].tick_params(axis="x", labelrotation=30)
+    axes[1].set_title(r"$\bf{" + "Negative" + "}$" + " Blood Groups")
     axes[1].set_ylabel("Stock Level (%)")
-    fig.suptitle("Singapore Blood Stock Levels Over Time")
-    sns.lineplot(ax=axes[0], x="Time", y="Stock Level", hue="Blood Type", data=dfm_pos)
-    sns.lineplot(ax=axes[1], x="Time", y="Stock Level", hue="Blood Type", data=dfm_neg)
+    axes[1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+    # axes[0].xaxis.set_major_locator(mdates.WeekdayLocator(interval=4))
+    axes[1].xaxis.set_major_locator(mdates.MonthLocator())
+    # axes[0].tick_params(axis="x", labelrotation=30)
+
+    fig.suptitle(
+        "Singapore Blood Stock Levels \n (Mid-June 2021 to Mid-Jan 2022, 219 days)"
+    )
+    sns.despine()
+    sns.lineplot(
+        ax=axes[0],
+        x="Time",
+        y="Stock Level",
+        hue="Blood Type",
+        marker="o",
+        data=dfm_pos,
+    )
+    sns.lineplot(
+        ax=axes[1],
+        x="Time",
+        y="Stock Level",
+        hue="Blood Type",
+        marker="o",
+        data=dfm_neg,
+    )
     axes[0].legend(loc="lower center", title="Blood Type")
+    axes[0].set(xlabel=None)
+    axes[1].set(xlabel=None)
     # sns.lineplot(data=df, x="timestamps")
     plt.show()
 
