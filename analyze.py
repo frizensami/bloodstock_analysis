@@ -81,7 +81,7 @@ def plot_dataframe(df):
     # axes[0].tick_params(axis="x", labelrotation=30)
 
     fig.suptitle(
-        "Singapore Blood Stock Levels \n (Mid-June 2021 to Mid-Jan 2022, 219 days)"
+        "Singapore Blood Stock Levels \n (from Mid-June 2021)"
     )
     sns.despine()
     sns.lineplot(
@@ -100,8 +100,9 @@ def plot_dataframe(df):
         marker="o",
         data=dfm_neg,
     )
-    axes[0].legend(loc="lower center", title="Blood Type")
+    axes[0].legend(loc="lower left", title="Blood Type")
     axes[0].set(xlabel=None)
+    axes[1].legend(loc="lower left", title="Blood Type")
     axes[1].set(xlabel=None)
     # sns.lineplot(data=df, x="timestamps")
     plt.show()
