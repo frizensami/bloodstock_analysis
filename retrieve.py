@@ -11,7 +11,7 @@ os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 def main(access_token: str):
     g = Github(access_token)
-    repo = g.get_repo("datascapesg/red-cross-blood-stocks")
+    repo = g.get_repo("frizensami/red-cross-blood-stocks")
     default_branch: str = repo.default_branch
     commits = repo.get_commits()
     for commit in commits:
